@@ -4,13 +4,14 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity Web Player | UltyMyLife</title>
-    <script>
-  window.getTelegramInitData = function () {
-    if (!window.Telegram || !window.Telegram.WebApp) return "";
-    const wa = window.Telegram.WebApp;
-    wa.ready(); // optional
-    return wa.initData || "";
-  };
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script>
+  // Called when Unity instance is ready. Your template may provide createUnityInstance(...) callback
+  function onUnityReady(unityInstance) {
+    const initData = window.Telegram?.WebApp?.initData || "";
+    // Send initData to a GameObject in Unity
+    unityInstance.SendMessage("TelegramBridge", "OnInitData", initData);
+  }
 </script>
   </head>
   <body style="text-align: center; padding: 0; border: 0; margin: 0;">
